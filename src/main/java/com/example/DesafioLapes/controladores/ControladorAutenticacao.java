@@ -23,10 +23,11 @@ import java.util.Optional;
 public class ControladorAutenticacao {
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
     private UsuarioRepositorio repositorio;
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AutenticacaoDTO data){
-        var senhaUsuario = new UsernamePasswordAuthenticationToken(data.email(),data.password());
+        var senhaUsuario = new UsernamePasswordAuthenticationToken(data.email(),data.senha());
         var auth = this.authenticationManager.authenticate(senhaUsuario);
         return ResponseEntity.ok().build();
     }
