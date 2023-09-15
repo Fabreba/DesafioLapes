@@ -1,8 +1,10 @@
 package com.example.DesafioLapes.controladores;
 
 import com.example.DesafioLapes.dominio.usario.AutenticacaoDTO;
+import com.example.DesafioLapes.dominio.usario.LoginResponseDTO;
 import com.example.DesafioLapes.dominio.usario.RegistroDTO;
 import com.example.DesafioLapes.dominio.usario.Usuario;
+import com.example.DesafioLapes.infra.seguranca.TokenServico;
 import com.example.DesafioLapes.repositorios.UsuarioRepositorio;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,15 @@ public class ControladorAutenticacao {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UsuarioRepositorio repositorio;
+    @Autowired
+    private TokenServico tokenServico;
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AutenticacaoDTO data){
         var senhaUsuario = new UsernamePasswordAuthenticationToken(data.email(),data.senha());
         var auth = this.authenticationManager.authenticate(senhaUsuario);
-        return ResponseEntity.ok().build();
+        var a = (Usuario) auth.getPrincipal();
+        var token = tokenServico.gerarToken(a);
+        return ResponseEntity.ok( new LoginResponseDTO(token));
     }
     @PostMapping("/register")
     public ResponseEntity registrarUsuario(@RequestBody @Valid RegistroDTO data){
