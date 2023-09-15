@@ -1,4 +1,4 @@
-package com.example.DesafioLapes.servicos;
+package com.example.DesafioLapes.services;
 
 
 import com.example.DesafioLapes.repositories.UserRepository;
