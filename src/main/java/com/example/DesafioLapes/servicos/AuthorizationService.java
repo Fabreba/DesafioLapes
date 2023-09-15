@@ -1,7 +1,7 @@
 package com.example.DesafioLapes.servicos;
 
 
-import com.example.DesafioLapes.repositorios.UsuarioRepositorio;
+import com.example.DesafioLapes.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,12 +9,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AutorizacaoServico implements UserDetailsService {
+public class AuthorizationService implements UserDetailsService {
 
     @Autowired
-    UsuarioRepositorio repositorio;
+    UserRepository repository;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return repositorio.findByEmail(email);
+        return repository.findByEmail(email);
     }
 }

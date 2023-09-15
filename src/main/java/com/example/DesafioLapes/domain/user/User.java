@@ -1,4 +1,4 @@
-package com.example.DesafioLapes.dominio.usario;
+package com.example.DesafioLapes.domain.user;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,59 +10,55 @@ import java.util.Collection;
 import java.util.List;
 
 
-@Entity(name="usuario")
-@Table(name="usuario")
+@Entity(name="users")
+@Table(name="users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Usuario implements UserDetails {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    private String nome;
+    private String name;
 
     @Column(unique = true)
     private String email;
 
-    private String senha;
+    private String password;
 
-    private Float saldo;
+    private Float balance;
 
-    private UsuarioCargo cargo;
+    private UserRole role;
 
-    public Usuario(UsuarioDTO data) {
-        this.nome = data.nome();
+    public User(UserDTO data) {
+        this.name = data.name();
         this.email = data.email();
-        this.senha = data.senha();
+        this.password = data.password();
 
     }
 
-    public Usuario(String nome, String email, String senha, UsuarioCargo cargo) {
-        this.nome = nome;
+    public User(String name, String email, String password, UserRole role) {
+        this.name = name;
         this.email = email;
-        this.senha = senha;
-        this.cargo = cargo;
+        this.balance = 1000.0f;
+        this.password = password;
+        this.role = role;
     }
 
-    @PrePersist
-    public void persistencia() {
-        if (this.saldo == null) {
-            this.saldo = 0.0f;
-        }
-    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.cargo == UsuarioCargo.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
     public String getPassword() {
-        return senha;
+        return password;
     }
 
     @Override

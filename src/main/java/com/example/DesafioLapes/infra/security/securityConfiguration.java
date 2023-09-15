@@ -1,4 +1,4 @@
-package com.example.DesafioLapes.infra.seguranca;
+package com.example.DesafioLapes.infra.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class ConfiguracoesSeguranca {
+public class securityConfiguration {
     @Autowired
     SecurityFilter securityFilter;
     @Bean
@@ -27,10 +27,10 @@ public class ConfiguracoesSeguranca {
                 .authorizeHttpRequests(autorize -> autorize
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/categoria").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/categoria").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/produto").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/produto").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/category").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/category").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/product").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/product").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

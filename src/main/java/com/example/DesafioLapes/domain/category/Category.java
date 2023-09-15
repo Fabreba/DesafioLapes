@@ -1,22 +1,22 @@
-package com.example.DesafioLapes.dominio.categoria;
+package com.example.DesafioLapes.domain.category;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "categoria")
-@Table(name = "categoria")
+@Entity(name = "category")
+@Table(name = "category")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Categoria {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String nome;
+    private String name;
 
-    public Categoria(String nome) {
-        this.nome = nome;
+    public Category(String name) {
+        this.name = name;
     }
 }
