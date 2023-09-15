@@ -16,6 +16,10 @@
 
 ## ERD DIAGRAM
 ![DIAGRAMA ER](https://github.com/Fabreba/DesafioLapes/assets/92182806/ea5d7042-428a-4153-94d3-743b5230a174)
+
+## UML DIAGRAM
+![DIAGRAM UML](https://github.com/Fabreba/DesafioLapes/assets/92182806/a7d0c270-e2d1-4d6e-af7d-2123ae722e8e)
+
 ## Installation
 
 1. Clone the repository:
