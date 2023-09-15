@@ -20,7 +20,7 @@
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Fernanda-Kipper/auth-api.git](https://github.com/Fabreba/DesafioLapes.git
+git clone https://github.com/Fabreba/DesafioLapes.git
 ```
 
 2. Install dependencies with Maven
