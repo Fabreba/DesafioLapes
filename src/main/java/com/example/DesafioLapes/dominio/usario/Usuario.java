@@ -31,7 +31,6 @@ public class Usuario implements UserDetails {
 
     private Float saldo;
 
-    @Enumerated(EnumType.STRING)
     private UsuarioCargo cargo;
 
     public Usuario(UsuarioDTO data) {
@@ -50,9 +49,6 @@ public class Usuario implements UserDetails {
 
     @PrePersist
     public void persistencia() {
-        if (this.cargo == null) {
-            this.cargo = UsuarioCargo.valueOf("ADMIN");// temporario
-        }
         if (this.saldo == null) {
             this.saldo = 0.0f;
         }
@@ -71,26 +67,26 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-        return nome;
+        return email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
