@@ -26,6 +26,7 @@ git clone https://github.com/Fabreba/DesafioLapes.git
 2. Install dependencies with Maven
 
 3. Install [PostgresSQL](https://www.postgresql.org/)
+4. Change Database URL, User and Password in application.properties to yours
 
 ## Usage
 
