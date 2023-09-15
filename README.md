@@ -6,15 +6,16 @@
 
 
 ## Table of Contents
-
+- [ERD DIAGRAM](#ERDDIAGRAM)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Authentication](#authentication)
 - [Database](#database)
-- [Contributing](#contributing)
 
+## ERD DIAGRAM
+![DIAGRAMA ER](https://github.com/Fabreba/DesafioLapes/assets/92182806/ea5d7042-428a-4153-94d3-743b5230a174)
 ## Installation
 
 1. Clone the repository:
@@ -52,6 +53,10 @@ POST /auth/login - Login into the App
 
 POST /auth/register - Register a new user into the App
 ```
+3. Swagger
+   ```
+    http://localhost:8080/swagger-ui/index.html
+   ```
 
 ## Authentication
 The API uses Spring Security for authentication control. The following roles are available:
