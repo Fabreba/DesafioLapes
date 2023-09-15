@@ -25,35 +25,35 @@ public class ProductController {
     private CategoryRepository categoryRepository;
 
     @PostMapping
-    public ResponseEntity adicionarProduto(@RequestBody @Valid ProductDTO data){
-        Optional<Product> produtoExistente = this.productRepository.findByName(data.name());
-        Optional<Category> categoriaExistente = this.categoryRepository.findCategoryByName(data.name_category());
-        boolean produtoBool = produtoExistente.isPresent();
-        boolean categoriaBool = categoriaExistente.isPresent();
-        if( produtoBool || !categoriaBool){
+    public ResponseEntity addProduct(@RequestBody @Valid ProductDTO data){
+        Optional<Product> productExists = this.productRepository.findByName(data.name());
+        Optional<Category> categoryExists = this.categoryRepository.findCategoryByName(data.name_category());
+        boolean productBool = productExists.isPresent();
+        boolean categoryBool = categoryExists.isPresent();
+        if( productBool || !categoryBool){
             return ResponseEntity.status(HttpStatusCode.valueOf(404)).build();
         }
-        Product novoProduct = new Product(data.name(),data.price(), data.name_category());
-        productRepository.save(novoProduct);
+        Product newProduct = new Product(data.name(),data.price(), data.name_category());
+        productRepository.save(newProduct);
         return ResponseEntity.ok().build();
     }
     @DeleteMapping
-    public ResponseEntity removerProduto(@RequestBody @Valid ProductDTO data){
-        Optional<Product> produtoExiste =  this.productRepository.findByName(data.name());
-        if (produtoExiste.isPresent()){
-            Product product = produtoExiste.get();
+    public ResponseEntity removeProduct(@RequestBody @Valid ProductDTO data){
+        Optional<Product> productExists =  this.productRepository.findByName(data.name());
+        if (productExists.isPresent()){
+            Product product = productExists.get();
             productRepository.delete(product);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.status(HttpStatusCode.valueOf(404)).build();
     }
     @GetMapping
-    public ResponseEntity listarTodosOsProdutos(){
-        List<Product> productLista = productRepository.findAll();
-        List<ProductResponseDTO> produtoDTOs = productLista.stream()
+    public ResponseEntity getAllProducts(){
+        List<Product> productList = productRepository.findAll();
+        List<ProductResponseDTO> productDTOs = productList.stream()
                 .map(ProductResponseDTO::new)
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(produtoDTOs);
+        return ResponseEntity.ok(productDTOs);
     }
 }

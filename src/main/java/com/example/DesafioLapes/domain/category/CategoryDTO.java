@@ -1,4 +1,4 @@
 package com.example.DesafioLapes.domain.category;
 
-public record CategoriaDTO(String nome) {
+public record CategoryDTO(String name) {
 }
